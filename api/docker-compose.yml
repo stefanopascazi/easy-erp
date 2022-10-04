@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  easyerp_database:
+    image: mysql:latest
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+    container_name: easyerp_database
+    environment:
+      MYSQL_DATABASE: easyerp
+      MYSQL_PASSWORD: easyerp
+      MYSQL_USER: easyerp
+      MYSQL_ROOT_PASSWORD: fwojeoiguout43u9480
+    volumes:
+      - easyerp_database:/var/lib/mysql:rw
+    networks:
+      - easyerp_backend_network
+    ports:
+      - 3314:3306
+    restart: always
+
+volumes:
+  easyerp_database:
+networks:
+  easyerp_backend_network:
+    driver: bridge
